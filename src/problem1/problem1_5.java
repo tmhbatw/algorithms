@@ -20,18 +20,25 @@ public class problem1_5 {
     * For each test case, the output is an integer displaying the minimum time for painting that house.
     * */
 
-    private static int[] getNum(Scanner s){
-        String[] res=s.nextLine().split(" ");
-        int length=res.length;
-        int[] number=new int[length];
-        for(int i=0;i<length;i++)
-            number[i]=Integer.parseInt(res[i]);
-        Arrays.sort(number);
-        return number;
-    }
-
-    private static void print(int cur1,int cur2,int cur3,int cur4){
-        System.out.print(cur1+" "+cur2+" "+cur3+" "+cur4+" $");
+    private static int getRes(int[] num,int k){
+        int n=num.length;
+        int[][] dp=new int[k+1][n+1];
+        for(int i=1;i<=n;i++){
+            dp[1][i]+=dp[1][i-1]+num[i-1];
+        }
+        for(int i=2;i<=k;i++){
+            for(int j=1;j<=n;j++){
+                dp[i][j]=Math.max(num[j-1],dp[i-1][j-1]);
+                int curSum=num[j-1];
+                for(int l=j-1;l>=1;l--){
+                    curSum+=num[l-1];
+                    dp[i][j]=Math.min(dp[i][j],Math.max(curSum,dp[i-1][l-1]));
+                }
+            }
+        }
+        for(int[] cur:dp)
+            System.out.println(Arrays.toString(cur));
+        return dp[k][n];
     }
 
     public static void main(String[] args){
@@ -39,37 +46,17 @@ public class problem1_5 {
         while(s.hasNext()){
             int testcaseNumber=Integer.parseInt(s.nextLine());
             while(testcaseNumber-->0){
-                String[] firstLine=s.nextLine().split(" ");
-                int N=Integer.parseInt(firstLine[0]);
-                int T=Integer.parseInt(firstLine[1]);
-                int[] number=getNum(s);
-                for(int i=0;i<N;i++){
-                    for(int j=i+1;j<N;j++){
-                        int curTarget=T-number[i]-number[j];
-                        int left=j+1,right=N-1;
-                        while(left<right){
-                            if(number[left]+number[right]<curTarget){
-                                left++;
-                            }else if(number[left]+number[right]>curTarget)
-                                right--;
-                            else{
-                                print(number[i],number[j],number[left],number[right]);
-                                while(left<N-1&&number[left+1]==number[left])
-                                    left++;
-                                while(right>left&&number[right-1]==number[right])
-                                    right--;
-                                left++;
-                                right--;
-                            }
-                        }
-                        while(j<N-1&&number[j+1]==number[j])
-                            j++;
-                    }
-                    while(i<N-1&&number[i+1]==number[i])
-                        i++;
-                }
-                System.out.println();
+                String[] val=s.nextLine().split(" ");
+                int k=Integer.parseInt(val[0]);
+                int n=Integer.parseInt(val[1]);
+                String[] number=s.nextLine().split(" ");
+                int[] num=new int[n];
+                for(int i=0;i<n;i++)
+                    num[i]=Integer.parseInt(number[i]);
+                System.out.println(getRes(num,k));
             }
         }
     }
+
+
 }
