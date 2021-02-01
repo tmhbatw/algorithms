@@ -25,11 +25,15 @@ public class problem1_14 {
             while(testcaseNumber-->0){
                 int N=Integer.parseInt(s.nextLine());
                 String[] number=s.nextLine().split(" ");
+                System.out.println(number.length);
                 int[] num=new int[N*N];
                 for(int i=0;i<N*N;i++)
                     num[i]=Integer.parseInt(number[i]);
                 Arrays.sort(num);
-                System.out.println(Arrays.toString(num));
+                for(int i=0;i<num.length-1;i++)
+                    System.out.print(num[i]+" ");
+                System.out.print(num[num.length-1]);
+                System.out.println();
             }
         }
     }

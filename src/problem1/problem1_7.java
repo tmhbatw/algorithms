@@ -42,6 +42,7 @@ public class problem1_7 {
             int testcaseNumber=Integer.parseInt(s.nextLine());
             while(testcaseNumber-->0){
                 int[] num=getNumber(s);
+                System.out.println("the num array's length is "+num.length);
                 int levelNumber=1;
                 int start=0;
                 int length=num.length;

@@ -36,8 +36,6 @@ public class problem1_5 {
                 }
             }
         }
-        for(int[] cur:dp)
-            System.out.println(Arrays.toString(cur));
         return dp[k][n];
     }
 
