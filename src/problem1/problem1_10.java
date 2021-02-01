@@ -21,19 +21,29 @@ public class problem1_10 {
     * */
 
     public static void main(String[] args){
+        for(int i=0;i<3;i++){
+            int n=(int)(Math.random()*50);
+            System.out.println(n);
+            while(n-->0){
+                System.out.print((int)(Math.random()*250)+" ");
+            }System.out.println();
+            System.out.println((int)(Math.random()*50));
+        }
         Scanner s=new Scanner(System.in);
-        int testcaseNumber= Integer.parseInt(s.nextLine());
-        //测试每一个测试用例
-        while(testcaseNumber-->0){
-            //将数据读取出来
-            int n=Integer.parseInt(s.nextLine());
-            String[] number=s.nextLine().split(" ");
-            int[] num=new int[n+1];
-            for(int i=0;i<n;i++)
-                num[i+1]=num[i]+Integer.parseInt(number[i]);
-            Map<Integer,Integer> map=new HashMap<>();
-            int m= Integer.parseInt(s.nextLine());
-            System.out.println(getMinSum(n,num,0,m,map));
+        while(s.hasNext()) {
+            int testcaseNumber = Integer.parseInt(s.nextLine());
+            //测试每一个测试用例
+            while (testcaseNumber-- > 0) {
+                //将数据读取出来
+                int n = Integer.parseInt(s.nextLine());
+                String[] number = s.nextLine().split(" ");
+                int[] num = new int[n + 1];
+                for (int i = 0; i < n; i++)
+                    num[i + 1] = num[i] + Integer.parseInt(number[i]);
+                Map<Integer, Integer> map = new HashMap<>();
+                int m = Integer.parseInt(s.nextLine());
+                System.out.println(getMinSum(n, num, 0, m, map));
+            }
         }
     }
 
