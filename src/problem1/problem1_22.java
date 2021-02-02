@@ -9,8 +9,12 @@ public class problem1_22 {
 
     public static void main(String[] args){
         for(int i=0;i<50;i++){
-            System.out.print((int)(Math.random()*100)+" ");
+            System.out.print((int)(Math.random()*100-50)+" ");
         }
+        System.out.println();
+        for(int i=0;i<10;i++)
+            System.out.print((int)(Math.random()*20)+" ");
+        System.out.println();
         Scanner s=new Scanner(System.in);
         while(s.hasNext()){
             int testNumber=Integer.parseInt(s.nextLine());
